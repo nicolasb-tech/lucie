@@ -38,8 +38,7 @@ export function AIRecommendations() {
   return (
     <section>
       <div className="flex items-center gap-2 mb-3">
-        <h2 className="text-sm font-semibold text-gray-900">🧠 L&apos;IA recommande</h2>
-        <span className="text-xs text-gray-400">À l&apos;instant</span>
+        <h2 className="text-sm font-semibold text-gray-900">Recommandations IA</h2>
       </div>
 
       {visible.length === 0 ? (

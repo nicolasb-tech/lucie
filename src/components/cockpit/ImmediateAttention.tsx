@@ -47,9 +47,9 @@ export function ImmediateAttention() {
     <section>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <h2 className="text-sm font-semibold text-gray-900">🔥 Attention immédiate</h2>
+          <h2 className="text-sm font-semibold text-gray-900">Attention immédiate</h2>
           {visible.length > 0 && (
-            <span className="px-2 py-0.5 bg-red-100 text-red-700 text-xs font-semibold rounded-full">
+            <span className="px-2 py-0.5 bg-red-50 text-red-600 text-xs font-semibold rounded-full">
               {visible.length}
             </span>
           )}
@@ -58,8 +58,7 @@ export function ImmediateAttention() {
 
       {visible.length === 0 ? (
         <Card className="text-center py-8">
-          <div className="text-2xl mb-2">✅</div>
-          <p className="text-sm text-gray-500 font-medium">Tout est sous contrôle — rien d&apos;urgent pour l&apos;instant.</p>
+          <p className="text-sm text-gray-400">Rien d&apos;urgent pour l&apos;instant ✓</p>
         </Card>
       ) : (
         <div className="space-y-2">

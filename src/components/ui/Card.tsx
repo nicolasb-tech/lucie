@@ -12,15 +12,18 @@ const paddingClasses = {
   none: '',
   sm: 'p-3',
   md: 'p-4',
-  lg: 'p-6',
+  lg: 'p-5',
 };
 
 export function Card({ children, className = '', onClick, hover = false, padding = 'md' }: CardProps) {
   return (
     <div
-      className={`bg-white rounded-xl border border-gray-100 shadow-sm ${paddingClasses[padding]} ${
-        hover || onClick ? 'cursor-pointer hover:border-gray-200 hover:shadow-md transition-all duration-150' : ''
+      className={`bg-white rounded-2xl ${paddingClasses[padding]} ${
+        hover || onClick
+          ? 'cursor-pointer transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(0,0,0,0.10)] shadow-[var(--shadow-card)]'
+          : 'shadow-[var(--shadow-card)]'
       } ${className}`}
+      style={{ boxShadow: hover || onClick ? undefined : 'var(--shadow-card)' }}
       onClick={onClick}
     >
       {children}

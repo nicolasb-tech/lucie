@@ -27,7 +27,7 @@ export function TodayOverview() {
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
       {/* Réunions du jour */}
       <section>
-        <h2 className="text-sm font-semibold text-gray-900 mb-3">📅 Réunions du jour</h2>
+        <h2 className="text-sm font-semibold text-gray-900 mb-3">Réunions du jour</h2>
         <Card>
           <div className="space-y-0">
             {todayMeetings.map((meeting, i) => {
@@ -91,7 +91,7 @@ export function TodayOverview() {
       {/* Tâches du jour */}
       <section>
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-sm font-semibold text-gray-900">✅ Tâches du jour</h2>
+          <h2 className="text-sm font-semibold text-gray-900">Tâches du jour</h2>
           <span className="text-xs text-gray-400">
             {doneTasks.size}/{todayTasks.length} faites
           </span>

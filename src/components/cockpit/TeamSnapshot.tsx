@@ -15,7 +15,7 @@ export function TeamSnapshot() {
   return (
     <section>
       <div className="flex items-center justify-between mb-3">
-        <h2 className="text-sm font-semibold text-gray-900">👥 État de l&apos;équipe</h2>
+        <h2 className="text-sm font-semibold text-gray-900">État de l&apos;équipe</h2>
         <span className="text-xs text-gray-400">{teamMembers.length} membres</span>
       </div>
       <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">

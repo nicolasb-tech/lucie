@@ -25,7 +25,7 @@ export function PriorityEmails() {
   if (priority.length === 0) {
     return (
       <section>
-        <h2 className="text-sm font-semibold text-gray-900 mb-3">📨 Emails prioritaires</h2>
+        <h2 className="text-sm font-semibold text-gray-900 mb-3">Emails prioritaires</h2>
         <Card className="text-center py-6">
           <p className="text-sm text-gray-400">Boîte de réception à jour ✓</p>
         </Card>
@@ -36,7 +36,7 @@ export function PriorityEmails() {
   return (
     <section>
       <div className="flex items-center justify-between mb-3">
-        <h2 className="text-sm font-semibold text-gray-900">📨 Emails prioritaires</h2>
+        <h2 className="text-sm font-semibold text-gray-900">Emails prioritaires</h2>
         <span className="px-2 py-0.5 bg-orange-100 text-orange-700 text-xs font-semibold rounded-full">
           {priority.length} non lus
         </span>

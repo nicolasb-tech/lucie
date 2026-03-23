@@ -10,7 +10,7 @@ const statusConfig: Record<string, { label: string; bg: string; text: string; do
 export function ProjectsStatus() {
   return (
     <section>
-      <h2 className="text-sm font-semibold text-gray-900 mb-3">🗂 Projets en cours</h2>
+      <h2 className="text-sm font-semibold text-gray-900 mb-3">Projets en cours</h2>
       <div className="flex flex-wrap gap-2">
         {projects.map((project) => {
           const cfg = statusConfig[project.status] ?? statusConfig['on-track'];
