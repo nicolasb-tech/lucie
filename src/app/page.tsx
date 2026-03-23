@@ -9,11 +9,11 @@ import { TeamTab } from '@/components/team/TeamTab';
 import { emails, urgentItems } from '@/data/mockData';
 
 const tabTitles: Record<TabId, { title: string; subtitle: string }> = {
-  cockpit: { title: 'Command Cockpit', subtitle: 'Your daily operating system' },
-  tasks: { title: 'Tasks', subtitle: 'Manage your workload' },
-  agenda: { title: 'Agenda', subtitle: 'Meetings & calendar' },
-  emails: { title: 'Inbox', subtitle: 'Important emails only' },
-  team: { title: 'Team', subtitle: 'Staffing & workload' },
+  cockpit: { title: 'Cockpit', subtitle: 'Votre cerveau de remplacement' },
+  tasks: { title: 'Tâches', subtitle: 'Gérez votre charge de travail' },
+  agenda: { title: 'Agenda', subtitle: 'Réunions et calendrier' },
+  emails: { title: 'Boîte de réception', subtitle: 'Emails importants seulement' },
+  team: { title: 'Équipe', subtitle: 'Staffing et charge de travail' },
 };
 
 export default function Home() {
@@ -32,8 +32,8 @@ export default function Home() {
         urgentCount={urgentCount}
       />
 
-      <main className="max-w-[1440px] mx-auto px-6 py-6">
-        {/* Page header */}
+      <main className="max-w-[1440px] mx-auto px-4 md:px-6 pt-6 pb-24 md:pb-8">
+        {/* En-tête de page */}
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="text-xl font-bold text-gray-900">{title}</h1>
@@ -42,12 +42,11 @@ export default function Home() {
           {activeTab === 'cockpit' && (
             <div className="flex items-center gap-2 bg-emerald-50 border border-emerald-100 rounded-xl px-3 py-2">
               <span className="w-2 h-2 rounded-full bg-emerald-400" />
-              <span className="text-xs font-medium text-emerald-700">AI active · Updated just now</span>
+              <span className="text-xs font-medium text-emerald-700">IA active · Mis à jour à l&apos;instant</span>
             </div>
           )}
         </div>
 
-        {/* Tab content */}
         {activeTab === 'cockpit' && <CockpitTab />}
         {activeTab === 'tasks' && <TasksTab />}
         {activeTab === 'agenda' && <AgendaTab />}

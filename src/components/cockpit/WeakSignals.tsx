@@ -24,13 +24,13 @@ export function WeakSignals() {
   return (
     <section>
       <div className="flex items-center gap-2 mb-3">
-        <h2 className="text-sm font-semibold text-gray-900">⚠️ Weak Signals</h2>
-        <span className="text-xs text-gray-400">Automated detection</span>
+        <h2 className="text-sm font-semibold text-gray-900">⚠️ Signaux faibles</h2>
+        <span className="text-xs text-gray-400">Détection automatique</span>
       </div>
 
       {visible.length === 0 ? (
         <Card className="text-center py-6">
-          <p className="text-sm text-gray-400">No weak signals detected.</p>
+          <p className="text-sm text-gray-400">Aucun signal détecté.</p>
         </Card>
       ) : (
         <div className="space-y-2">

@@ -52,10 +52,10 @@ export function EmailsTab() {
       <div className="w-80 shrink-0 border-r border-gray-100 flex flex-col overflow-hidden">
         <div className="p-4 border-b border-gray-100 shrink-0">
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-gray-900">Inbox</h2>
-            <span className="text-xs text-gray-400">{unreadCount} unread</span>
+            <h2 className="text-sm font-semibold text-gray-900">Boîte de réception</h2>
+            <span className="text-xs text-gray-400">{unreadCount} non lu{unreadCount > 1 ? 's' : ''}</span>
           </div>
-          <p className="text-xs text-gray-400 mt-0.5">AI-filtered: important only</p>
+          <p className="text-xs text-gray-400 mt-0.5">Filtrés par l&apos;IA : important uniquement</p>
         </div>
 
         <div className="overflow-y-auto flex-1">
@@ -91,9 +91,11 @@ export function EmailsTab() {
                       {email.summary}
                     </p>
                     <div className="flex items-center gap-1.5 mt-1.5">
-                      <Badge variant={email.priority as Priority}>{email.priority}</Badge>
-                      {state.replied && <Badge variant="success">Replied</Badge>}
-                      {state.ignored && <Badge variant="neutral">Ignored</Badge>}
+                      <Badge variant={email.priority as Priority}>
+                        {email.priority === 'critical' ? 'Critique' : email.priority === 'high' ? 'Haute' : email.priority === 'medium' ? 'Moyenne' : 'Basse'}
+                      </Badge>
+                      {state.replied && <Badge variant="success">Répondu</Badge>}
+                      {state.ignored && <Badge variant="neutral">Ignoré</Badge>}
                       {project && (
                         <span className="flex items-center gap-1 text-[10px] text-gray-400">
                           <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: project.color }} />
@@ -128,8 +130,10 @@ export function EmailsTab() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
-                  <Badge variant={selected.priority as Priority}>{selected.priority}</Badge>
-                  {emailStates[selected.id]?.replied && <Badge variant="success">Replied</Badge>}
+                  <Badge variant={selected.priority as Priority}>
+                    {selected.priority === 'critical' ? 'Critique' : selected.priority === 'high' ? 'Haute' : selected.priority === 'medium' ? 'Moyenne' : 'Basse'}
+                  </Badge>
+                  {emailStates[selected.id]?.replied && <Badge variant="success">Répondu</Badge>}
                 </div>
               </div>
               {/* Suggested actions */}
@@ -138,8 +142,8 @@ export function EmailsTab() {
                   <Button
                     key={action}
                     size="xs"
-                    variant={action === 'Reply' ? 'primary' : action === 'Ignore' ? 'ghost' : 'secondary'}
-                    onClick={() => action === 'Ignore' && ignore(selected.id)}
+                    variant={action === 'Répondre' ? 'primary' : action === 'Ignorer' ? 'ghost' : 'secondary'}
+                    onClick={() => action === 'Ignorer' && ignore(selected.id)}
                   >
                     {action}
                   </Button>
@@ -166,16 +170,16 @@ export function EmailsTab() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                         </svg>
                       </div>
-                      <span className="text-sm font-semibold text-indigo-800">AI Draft Reply</span>
+                      <span className="text-sm font-semibold text-indigo-800">Réponse IA (brouillon)</span>
                     </div>
                     {emailStates[selected.id]?.sent && (
-                      <Badge variant="success">Sent ✓</Badge>
+                      <Badge variant="success">Envoyé ✓</Badge>
                     )}
                   </div>
                   <div className="p-4 bg-white">
                     {emailStates[selected.id]?.sent ? (
                       <div className="text-sm text-gray-600 bg-emerald-50 rounded-xl p-4 border border-emerald-100">
-                        <p className="font-medium text-emerald-700 mb-2">✓ Reply sent successfully</p>
+                        <p className="font-medium text-emerald-700 mb-2">✓ Réponse envoyée avec succès</p>
                         <pre className="text-xs text-gray-600 whitespace-pre-wrap font-sans leading-relaxed">
                           {emailStates[selected.id]?.replyText}
                         </pre>
@@ -186,24 +190,24 @@ export function EmailsTab() {
                           className="w-full text-sm text-gray-800 leading-relaxed bg-transparent border-0 outline-none resize-none min-h-[180px] font-sans"
                           value={emailStates[selected.id]?.replyText ?? ''}
                           onChange={(e) => updateReply(selected.id, e.target.value)}
-                          placeholder="AI-generated reply..."
+                          placeholder="Réponse générée par l'IA..."
                         />
                         <div className="flex items-center justify-between pt-3 border-t border-gray-100">
-                          <p className="text-xs text-indigo-400">✨ AI generated · editable</p>
+                          <p className="text-xs text-indigo-400">✨ Généré par l&apos;IA · modifiable</p>
                           <div className="flex items-center gap-2">
                             <Button
                               variant="ghost"
                               size="sm"
                               onClick={() => updateReply(selected.id, selected.aiSuggestedReply)}
                             >
-                              Reset
+                              Réinitialiser
                             </Button>
                             <Button
                               variant="primary"
                               size="sm"
                               onClick={() => sendReply(selected.id)}
                             >
-                              Send reply →
+                              Envoyer →
                             </Button>
                           </div>
                         </div>

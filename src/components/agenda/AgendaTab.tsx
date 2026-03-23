@@ -46,10 +46,10 @@ function MeetingCard({
         </div>
         {!isDone && meeting.prepPoints && meeting.prepPoints.length > 0 && (
           <span className="shrink-0 text-[10px] font-semibold text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded-md">
-            Prep needed
+            À préparer
           </span>
         )}
-        {isDone && <Badge variant="success">Done</Badge>}
+        {isDone && <Badge variant="success">Terminée</Badge>}
       </div>
       {project && (
         <span className="flex items-center gap-1 text-[11px] text-gray-500 mt-1.5">
@@ -101,12 +101,12 @@ export function AgendaTab() {
                   day === d ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-500 hover:text-gray-700'
                 }`}
               >
-                {d === 'today' ? 'Today — Mon Mar 23' : 'Tomorrow — Tue Mar 24'}
+                {d === 'today' ? 'Aujourd\'hui — Lun 23 Mars' : 'Demain — Mar 24 Mars'}
               </button>
             ))}
           </div>
           <div className="flex-1" />
-          <span className="text-xs text-gray-400">{dayMeetings.length} meetings</span>
+          <span className="text-xs text-gray-400">{dayMeetings.length} réunion{dayMeetings.length > 1 ? 's' : ''}</span>
         </div>
 
         {/* Timeline */}
@@ -157,12 +157,12 @@ export function AgendaTab() {
           if (!next) return null;
           return (
             <Card className="bg-indigo-50 border-indigo-100">
-              <p className="text-xs font-semibold text-indigo-700 mb-1">Next up</p>
+              <p className="text-xs font-semibold text-indigo-700 mb-1">Prochaine réunion</p>
               <p className="text-sm font-semibold text-indigo-900">{next.title}</p>
               <p className="text-xs text-indigo-600 mt-0.5">{next.start} — {next.end}</p>
               {next.prepPoints && next.prepPoints.length > 0 && (
                 <div className="mt-3">
-                  <p className="text-xs font-semibold text-indigo-700 mb-1">Prep checklist</p>
+                  <p className="text-xs font-semibold text-indigo-700 mb-1">Liste de préparation</p>
                   <ul className="space-y-1">
                     {next.prepPoints.map((pt, i) => (
                       <li key={i} className="flex items-start gap-1.5 text-xs text-indigo-700">
@@ -180,28 +180,28 @@ export function AgendaTab() {
         {/* Conflict alert */}
         {dayMeetings.some((m) => m.conflict) && (
           <div className="bg-red-50 border border-red-100 rounded-xl p-3">
-            <p className="text-xs font-semibold text-red-700">⚠️ Conflicts detected</p>
-            <p className="text-xs text-red-600 mt-1">You have overlapping meetings.</p>
+            <p className="text-xs font-semibold text-red-700">⚠️ Conflits détectés</p>
+            <p className="text-xs text-red-600 mt-1">Vous avez des réunions qui se chevauchent.</p>
           </div>
         )}
 
         {/* Day summary */}
         <Card padding="sm">
-          <p className="text-xs font-semibold text-gray-600 mb-2">Day overview</p>
+          <p className="text-xs font-semibold text-gray-600 mb-2">Résumé de la journée</p>
           <div className="space-y-1.5 text-xs text-gray-500">
             <div className="flex justify-between">
-              <span>Meetings</span>
+              <span>Réunions</span>
               <span className="font-medium text-gray-700">{dayMeetings.length}</span>
             </div>
             <div className="flex justify-between">
-              <span>Total time</span>
+              <span>Temps total</span>
               <span className="font-medium text-gray-700">
                 {Math.round(dayMeetings.reduce((acc, m) => acc + (timeToMinutes(m.end) - timeToMinutes(m.start)), 0) / 60)}h{' '}
                 {dayMeetings.reduce((acc, m) => acc + (timeToMinutes(m.end) - timeToMinutes(m.start)), 0) % 60}m
               </span>
             </div>
             <div className="flex justify-between">
-              <span>Prep needed</span>
+              <span>À préparer</span>
               <span className="font-medium text-amber-600">
                 {dayMeetings.filter((m) => m.prepPoints && m.prepPoints.length > 0 && m.status !== 'done').length}
               </span>
@@ -221,7 +221,7 @@ export function AgendaTab() {
           <div className="space-y-4">
             <div className="flex items-center gap-3 text-sm text-gray-600">
               <span>🕐 {selected.start} – {selected.end}</span>
-              {selected.status === 'done' && <Badge variant="success">Completed</Badge>}
+              {selected.status === 'done' && <Badge variant="success">Terminée</Badge>}
             </div>
 
             {getProject(selected.project) && (
@@ -253,7 +253,7 @@ export function AgendaTab() {
             {/* Meeting summary */}
             {selected.summary && (
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">AI Summary</p>
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Résumé IA</p>
                 <div className="bg-gray-50 rounded-xl p-3 text-sm text-gray-700 leading-relaxed">
                   {selected.summary}
                 </div>
@@ -264,7 +264,7 @@ export function AgendaTab() {
             {selected.prepPoints && selected.prepPoints.length > 0 && (
               <div>
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
-                  AI Preparation Points
+                  Points de préparation IA
                 </p>
                 <ul className="space-y-2">
                   {selected.prepPoints.map((pt, i) => (
@@ -280,8 +280,8 @@ export function AgendaTab() {
             )}
 
             <div className="flex items-center gap-2 pt-2">
-              <Button variant="primary" size="sm">Join meeting</Button>
-              <Button variant="secondary" size="sm">Add notes</Button>
+              <Button variant="primary" size="sm">Rejoindre</Button>
+              <Button variant="secondary" size="sm">Ajouter des notes</Button>
             </div>
           </div>
         )}

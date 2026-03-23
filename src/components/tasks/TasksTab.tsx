@@ -11,17 +11,17 @@ type Priority = 'critical' | 'high' | 'medium' | 'low';
 type TaskStatus = 'todo' | 'in-progress' | 'done' | 'delegated';
 
 const priorityConfig: Record<Priority, { label: string; variant: 'critical' | 'high' | 'medium' | 'low' }> = {
-  critical: { label: 'Critical', variant: 'critical' },
-  high: { label: 'High', variant: 'high' },
-  medium: { label: 'Medium', variant: 'medium' },
-  low: { label: 'Low', variant: 'low' },
+  critical: { label: 'Critique', variant: 'critical' },
+  high: { label: 'Haute', variant: 'high' },
+  medium: { label: 'Moyenne', variant: 'medium' },
+  low: { label: 'Basse', variant: 'low' },
 };
 
 const statusConfig: Record<TaskStatus, { label: string; color: string }> = {
-  todo: { label: 'To Do', color: 'bg-gray-100 text-gray-600' },
-  'in-progress': { label: 'In Progress', color: 'bg-blue-100 text-blue-700' },
-  done: { label: 'Done', color: 'bg-emerald-100 text-emerald-700' },
-  delegated: { label: 'Delegated', color: 'bg-purple-100 text-purple-700' },
+  todo: { label: 'À faire', color: 'bg-gray-100 text-gray-600' },
+  'in-progress': { label: 'En cours', color: 'bg-blue-100 text-blue-700' },
+  done: { label: 'Terminé', color: 'bg-emerald-100 text-emerald-700' },
+  delegated: { label: 'Délégué', color: 'bg-purple-100 text-purple-700' },
 };
 
 function TaskRow({
@@ -87,8 +87,8 @@ function TaskRow({
         <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
           {!isDone && (
             <>
-              <Button size="xs" variant="ghost" onClick={onDefer}>Defer</Button>
-              <Button size="xs" variant="ghost" onClick={onDelegate}>Delegate</Button>
+              <Button size="xs" variant="ghost" onClick={onDefer}>Différer</Button>
+              <Button size="xs" variant="ghost" onClick={onDelegate}>Déléguer</Button>
             </>
           )}
         </div>
@@ -107,7 +107,7 @@ export function TasksTab() {
 
   const defer = (id: string) =>
     setTaskList((tl) =>
-      tl.map((t) => (t.id === id ? { ...t, section: 'upcoming', deadline: 'Next week' } : t))
+      tl.map((t) => (t.id === id ? { ...t, section: 'upcoming', deadline: 'Semaine prochaine' } : t))
     );
 
   const delegate = (id: string, memberId: string) => {
@@ -146,14 +146,14 @@ export function TasksTab() {
                 </svg>
               </div>
               <div className="flex-1">
-                <p className="text-sm font-semibold text-indigo-800">Suggested plan for today</p>
+                <p className="text-sm font-semibold text-indigo-800">Plan suggéré pour aujourd&apos;hui</p>
                 <p className="text-xs text-indigo-600 mt-0.5">
-                  AI recommends starting with: <strong>{aiPlan[0]?.title}</strong>
-                  {aiPlan[1] ? ` then ${aiPlan[1].title}` : ''}
+                  L&apos;IA recommande de commencer par : <strong>{aiPlan[0]?.title}</strong>
+                  {aiPlan[1] ? ` puis ${aiPlan[1].title}` : ''}
                 </p>
               </div>
               <span className="text-xs text-indigo-500 font-medium bg-indigo-100 px-2 py-1 rounded-lg">
-                ~{Math.round(totalMinutesToday / 60)}h {totalMinutesToday % 60}m left
+                ~{Math.round(totalMinutesToday / 60)}h{totalMinutesToday % 60 > 0 ? ` ${totalMinutesToday % 60}m` : ''} restantes
               </span>
             </div>
           </div>
@@ -163,9 +163,9 @@ export function TasksTab() {
         <section>
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-sm font-semibold text-gray-900 flex items-center gap-2">
-              Today
+              Aujourd&apos;hui
               <span className="text-xs font-normal text-gray-400">
-                {todayTasks.filter((t) => t.status === 'done').length}/{todayTasks.length} done
+                {todayTasks.filter((t) => t.status === 'done').length}/{todayTasks.length} faites
               </span>
             </h2>
           </div>
@@ -184,7 +184,7 @@ export function TasksTab() {
 
         {/* Upcoming */}
         <section>
-          <h2 className="text-sm font-semibold text-gray-900 mb-2">Upcoming</h2>
+          <h2 className="text-sm font-semibold text-gray-900 mb-2">À venir</h2>
           <div className="space-y-1.5">
             {upcomingTasks.map((task) => (
               <TaskRow
@@ -200,7 +200,7 @@ export function TasksTab() {
 
         {/* Delegated */}
         <section>
-          <h2 className="text-sm font-semibold text-gray-900 mb-2">Delegated</h2>
+          <h2 className="text-sm font-semibold text-gray-900 mb-2">Délégué</h2>
           <div className="space-y-1.5">
             {delegatedTasks.map((task) => (
               <TaskRow
@@ -218,13 +218,13 @@ export function TasksTab() {
       {/* Right sidebar */}
       <div className="w-56 shrink-0 space-y-4">
         <Card padding="sm">
-          <p className="text-xs font-semibold text-gray-600 mb-2">Filter by project</p>
+          <p className="text-xs font-semibold text-gray-600 mb-2">Filtrer par projet</p>
           <div className="space-y-1">
             <button
               onClick={() => setFilter('all')}
               className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors ${filter === 'all' ? 'bg-indigo-50 text-indigo-700' : 'text-gray-600 hover:bg-gray-50'}`}
             >
-              All projects
+              Tous les projets
             </button>
             {projects.map((p) => (
               <button
@@ -240,18 +240,18 @@ export function TasksTab() {
         </Card>
 
         <Card padding="sm">
-          <p className="text-xs font-semibold text-gray-600 mb-2">Today&apos;s summary</p>
+          <p className="text-xs font-semibold text-gray-600 mb-2">Résumé du jour</p>
           <div className="space-y-2 text-xs text-gray-500">
             <div className="flex justify-between">
-              <span>Total tasks</span>
+              <span>Total tâches</span>
               <span className="font-medium text-gray-700">{todayTasks.length}</span>
             </div>
             <div className="flex justify-between">
-              <span>Completed</span>
+              <span>Terminées</span>
               <span className="font-medium text-emerald-600">{todayTasks.filter((t) => t.status === 'done').length}</span>
             </div>
             <div className="flex justify-between">
-              <span>Time left</span>
+              <span>Temps restant</span>
               <span className="font-medium text-gray-700">{Math.round(totalMinutesToday / 60)}h {totalMinutesToday % 60}m</span>
             </div>
           </div>
@@ -259,7 +259,7 @@ export function TasksTab() {
       </div>
 
       {/* Delegate Modal */}
-      <Modal open={!!delegateModal} onClose={() => setDelegateModal(null)} title="Delegate to" width="sm">
+      <Modal open={!!delegateModal} onClose={() => setDelegateModal(null)} title="Déléguer à" width="sm">
         <div className="space-y-2">
           {teamMembers.map((m) => (
             <button

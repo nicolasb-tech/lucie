@@ -29,10 +29,10 @@ export function TeamTab() {
       {/* Stats bar */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {[
-          { label: 'Team size', value: teamMembers.length, color: 'text-gray-900' },
-          { label: 'Avg load', value: `${avgLoad}%`, color: avgLoad >= 80 ? 'text-red-600' : 'text-emerald-600' },
-          { label: 'Overloaded', value: teamMembers.filter((m) => m.availability === 'overloaded').length, color: 'text-red-600' },
-          { label: 'Available', value: teamMembers.filter((m) => m.availability === 'available').length, color: 'text-emerald-600' },
+          { label: 'Équipe', value: teamMembers.length, color: 'text-gray-900' },
+          { label: 'Charge moy.', value: `${avgLoad}%`, color: avgLoad >= 80 ? 'text-red-600' : 'text-emerald-600' },
+          { label: 'Surchargés', value: teamMembers.filter((m) => m.availability === 'overloaded').length, color: 'text-red-600' },
+          { label: 'Disponibles', value: teamMembers.filter((m) => m.availability === 'available').length, color: 'text-emerald-600' },
         ].map((stat) => (
           <Card key={stat.label} padding="md">
             <p className="text-xs text-gray-400 mb-1">{stat.label}</p>
@@ -49,14 +49,14 @@ export function TeamTab() {
           </svg>
         </div>
         <div className="flex-1">
-          <p className="text-sm font-semibold text-indigo-900">AI Staffing Insight</p>
+          <p className="text-sm font-semibold text-indigo-900">Analyse IA du staffing</p>
           <p className="text-xs text-indigo-700 mt-0.5">
-            Sophie and Thomas are both above 85% load. Consider opening 2 new positions (Backend + Data Engineering)
-            to protect Q2 delivery timelines.
+            Sophie et Thomas sont tous les deux au-dessus de 85% de charge. Envisagez d&apos;ouvrir 2 postes (Backend + Data Engineering)
+            pour protéger les délais de livraison Q2.
           </p>
         </div>
         <Button size="sm" variant="primary" onClick={() => setShowSuggestion(true)}>
-          View plan
+          Voir le plan
         </Button>
       </div>
 
@@ -85,7 +85,7 @@ export function TeamTab() {
                       <p className="text-xs text-gray-400">{member.role}</p>
                     </div>
                     <Badge variant={availabilityVariant[member.availability] ?? 'neutral'}>
-                      {member.availability}
+                      {member.availability === 'overloaded' ? 'Surchargé' : member.availability === 'busy' ? 'Occupé' : 'Disponible'}
                     </Badge>
                   </div>
                 </div>
@@ -93,7 +93,7 @@ export function TeamTab() {
 
               <div className="mt-4">
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs text-gray-500">Workload</span>
+                  <span className="text-xs text-gray-500">Charge</span>
                   <span className={`text-xs font-semibold ${member.load >= 90 ? 'text-red-600' : member.load >= 75 ? 'text-orange-600' : 'text-emerald-600'}`}>
                     {member.load}%
                   </span>
@@ -126,7 +126,7 @@ export function TeamTab() {
 
       {/* Project workload overview */}
       <Card>
-        <h3 className="text-sm font-semibold text-gray-900 mb-4">Project Load Overview</h3>
+        <h3 className="text-sm font-semibold text-gray-900 mb-4">Charge par projet</h3>
         <div className="space-y-3">
           {projects.map((project) => {
             const assigned = teamMembers.filter((m) => m.projects.includes(project.id));
@@ -145,7 +145,7 @@ export function TeamTab() {
                   {assigned.map((m) => (
                     <Avatar key={m.id} initials={m.avatar} color={m.avatarColor} size="sm" />
                   ))}
-                  <span className="text-xs text-gray-400 ml-1">{assigned.length} members</span>
+                  <span className="text-xs text-gray-400 ml-1">{assigned.length} membre{assigned.length > 1 ? 's' : ''}</span>
                 </div>
               </div>
             );
@@ -169,22 +169,22 @@ export function TeamTab() {
                 <p className="text-sm text-gray-500">{selectedMember.role}</p>
                 <div className="flex items-center gap-2 mt-1">
                   <Badge variant={availabilityVariant[selectedMember.availability] ?? 'neutral'}>
-                    {selectedMember.availability}
+                    {selectedMember.availability === 'overloaded' ? 'Surchargé' : selectedMember.availability === 'busy' ? 'Occupé' : 'Disponible'}
                   </Badge>
                   <span className={`text-sm font-semibold ${selectedMember.load >= 90 ? 'text-red-600' : selectedMember.load >= 75 ? 'text-orange-600' : 'text-emerald-600'}`}>
-                    {selectedMember.load}% load
+                    {selectedMember.load}% charge
                   </span>
                 </div>
               </div>
             </div>
 
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Workload</p>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Charge de travail</p>
               <LoadBar value={selectedMember.load} size="md" />
             </div>
 
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Skills</p>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Compétences</p>
               <div className="flex flex-wrap gap-1.5">
                 {selectedMember.skills.map((s) => (
                   <span key={s} className="px-2.5 py-1 bg-gray-100 text-gray-700 text-xs rounded-lg font-medium">{s}</span>
@@ -193,7 +193,7 @@ export function TeamTab() {
             </div>
 
             <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Assigned Projects</p>
+              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Projets assignés</p>
               <div className="space-y-1.5">
                 {selectedMember.projects.map((pid) => {
                   const p = getProject(pid);
@@ -202,7 +202,7 @@ export function TeamTab() {
                       <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: p.color }} />
                       <span className="text-sm text-gray-700">{p.name}</span>
                       <Badge variant={p.status === 'at-risk' ? 'high' : p.status === 'delayed' ? 'critical' : 'success'}>
-                        {p.status}
+                        {p.status === 'at-risk' ? 'À risque' : p.status === 'delayed' ? 'En retard' : 'En bonne voie'}
                       </Badge>
                     </div>
                   ) : null;
@@ -212,7 +212,7 @@ export function TeamTab() {
 
             {memberTasks.length > 0 && (
               <div>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Delegated Tasks</p>
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Tâches déléguées</p>
                 <div className="space-y-1.5">
                   {memberTasks.map((t) => (
                     <div key={t.id} className="flex items-center gap-2 text-sm text-gray-700 bg-gray-50 rounded-lg px-3 py-2">
@@ -225,30 +225,30 @@ export function TeamTab() {
             )}
 
             <div className="flex items-center gap-2 pt-2">
-              <Button variant="primary" size="sm">Send message</Button>
-              <Button variant="secondary" size="sm">Reassign tasks</Button>
+              <Button variant="primary" size="sm">Envoyer un message</Button>
+              <Button variant="secondary" size="sm">Réassigner</Button>
             </div>
           </div>
         )}
       </Modal>
 
       {/* Staffing Plan Modal */}
-      <Modal open={showSuggestion} onClose={() => setShowSuggestion(false)} title="AI Staffing Plan" width="md">
+      <Modal open={showSuggestion} onClose={() => setShowSuggestion(false)} title="Plan de staffing IA" width="md">
         <div className="space-y-4">
           <div className="bg-amber-50 border border-amber-100 rounded-xl p-4">
-            <p className="text-sm font-semibold text-amber-800">⚠️ Current risk</p>
+            <p className="text-sm font-semibold text-amber-800">⚠️ Risque actuel</p>
             <p className="text-xs text-amber-700 mt-1">
-              3 team members are above 75% capacity. This creates delivery risk for Platform Relaunch and Enterprise Migration.
+              3 membres de l&apos;équipe sont au-dessus de 75% de capacité. Cela crée un risque de livraison pour Refonte Platform et Migration Enterprise.
             </p>
           </div>
 
           <div>
-            <p className="text-sm font-semibold text-gray-900 mb-3">Recommended actions</p>
+            <p className="text-sm font-semibold text-gray-900 mb-3">Actions recommandées</p>
             <div className="space-y-3">
               {[
-                { action: 'Open Backend Engineer position', urgency: 'This week', reason: 'Support Sophie — reduce her load by ~25%' },
-                { action: 'Open Data Engineer position', urgency: 'Within 2 weeks', reason: 'Support Thomas on p5 Data Infrastructure' },
-                { action: 'Reassign Julien Petit to Platform Relaunch full-time', urgency: 'Immediate', reason: 'He\'s at 50% — can absorb 40% more work' },
+                { action: 'Ouvrir un poste Backend Engineer', urgency: 'Cette semaine', reason: 'Soutenir Sophie — réduire sa charge de ~25%' },
+                { action: 'Ouvrir un poste Data Engineer', urgency: 'Sous 2 semaines', reason: 'Soutenir Thomas sur Infrastructure Data' },
+                { action: 'Réaffecter Julien Petit à Refonte Platform à 100%', urgency: 'Immédiat', reason: 'Il est à 50% — peut absorber 40% de travail supplémentaire' },
               ].map((item, i) => (
                 <div key={i} className="bg-gray-50 rounded-xl p-3 flex items-start gap-3">
                   <span className="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 text-xs font-semibold flex items-center justify-center shrink-0 mt-0.5">
@@ -265,7 +265,7 @@ export function TeamTab() {
           </div>
 
           <Button variant="primary" onClick={() => setShowSuggestion(false)}>
-            Start hiring process →
+            Lancer le recrutement →
           </Button>
         </div>
       </Modal>

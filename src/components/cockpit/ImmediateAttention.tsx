@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { urgentItems, projects, teamMembers, getProject } from '@/data/mockData';
+import { urgentItems, teamMembers, getProject } from '@/data/mockData';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
@@ -10,10 +10,10 @@ import { Avatar } from '@/components/ui/Avatar';
 type Priority = 'critical' | 'high' | 'medium' | 'low';
 
 const priorityBadge: Record<Priority, React.ReactElement> = {
-  critical: <Badge variant="critical" dot>Critical</Badge>,
-  high: <Badge variant="high" dot>High</Badge>,
-  medium: <Badge variant="medium" dot>Medium</Badge>,
-  low: <Badge variant="low" dot>Low</Badge>,
+  critical: <Badge variant="critical" dot>Critique</Badge>,
+  high: <Badge variant="high" dot>Haute</Badge>,
+  medium: <Badge variant="medium" dot>Moyenne</Badge>,
+  low: <Badge variant="low" dot>Basse</Badge>,
 };
 
 const typeIcon: Record<string, string> = {
@@ -43,13 +43,11 @@ export function ImmediateAttention() {
     setAssignModal(null);
   };
 
-  const assigningItem = urgentItems.find((i) => i.id === assignModal);
-
   return (
     <section>
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <h2 className="text-sm font-semibold text-gray-900">🔥 Immediate Attention</h2>
+          <h2 className="text-sm font-semibold text-gray-900">🔥 Attention immédiate</h2>
           {visible.length > 0 && (
             <span className="px-2 py-0.5 bg-red-100 text-red-700 text-xs font-semibold rounded-full">
               {visible.length}
@@ -61,7 +59,7 @@ export function ImmediateAttention() {
       {visible.length === 0 ? (
         <Card className="text-center py-8">
           <div className="text-2xl mb-2">✅</div>
-          <p className="text-sm text-gray-500 font-medium">All clear — nothing urgent right now.</p>
+          <p className="text-sm text-gray-500 font-medium">Tout est sous contrôle — rien d&apos;urgent pour l&apos;instant.</p>
         </Card>
       ) : (
         <div className="space-y-2">
@@ -106,16 +104,16 @@ export function ImmediateAttention() {
                       </button>
                     ) : (
                       <Button size="xs" variant="ghost" onClick={() => setAssignModal(item.id)}>
-                        + Assign
+                        + Assigner
                       </Button>
                     )}
                   </div>
                   <div className="flex items-center gap-1">
                     <Button size="xs" variant="ghost" onClick={() => setDeferred(item.id)}>
-                      Defer
+                      Différer
                     </Button>
                     <Button size="xs" variant="success" onClick={() => setDone(item.id)}>
-                      ✓ Done
+                      ✓ Fait
                     </Button>
                   </div>
                 </div>
@@ -125,8 +123,8 @@ export function ImmediateAttention() {
         </div>
       )}
 
-      {/* Assign Modal */}
-      <Modal open={!!assignModal} onClose={() => setAssignModal(null)} title="Assign to team member" width="sm">
+      {/* Modal d'assignation */}
+      <Modal open={!!assignModal} onClose={() => setAssignModal(null)} title="Assigner à un membre" width="sm">
         <div className="space-y-2">
           {teamMembers.map((m) => (
             <button
@@ -144,7 +142,7 @@ export function ImmediateAttention() {
                   m.load >= 90 ? 'text-red-600' : m.load >= 75 ? 'text-orange-600' : 'text-emerald-600'
                 }`}
               >
-                {m.load}% load
+                {m.load}% charge
               </span>
             </button>
           ))}

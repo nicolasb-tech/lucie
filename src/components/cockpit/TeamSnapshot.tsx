@@ -6,19 +6,19 @@ import { Avatar } from '@/components/ui/Avatar';
 import { LoadBar } from '@/components/ui/LoadBar';
 
 const availabilityConfig: Record<string, { label: string; color: string }> = {
-  overloaded: { label: 'Overloaded', color: 'text-red-600' },
-  busy: { label: 'Busy', color: 'text-orange-600' },
-  available: { label: 'Available', color: 'text-emerald-600' },
+  overloaded: { label: 'Surchargé', color: 'text-red-600' },
+  busy: { label: 'Occupé', color: 'text-orange-600' },
+  available: { label: 'Disponible', color: 'text-emerald-600' },
 };
 
 export function TeamSnapshot() {
   return (
     <section>
       <div className="flex items-center justify-between mb-3">
-        <h2 className="text-sm font-semibold text-gray-900">👥 Team Snapshot</h2>
-        <span className="text-xs text-gray-400">{teamMembers.length} members</span>
+        <h2 className="text-sm font-semibold text-gray-900">👥 État de l&apos;équipe</h2>
+        <span className="text-xs text-gray-400">{teamMembers.length} membres</span>
       </div>
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
         {teamMembers.map((member) => {
           const avail = availabilityConfig[member.availability] ?? availabilityConfig.available;
           const memberProjects = member.projects.map(getProject).filter(Boolean);

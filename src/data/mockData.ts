@@ -1,26 +1,26 @@
 // ============================================================
-// MOCK DATA — Personal Operating System
+// DONNÉES MOCK — Système d'exploitation personnel
 // ============================================================
 
 export type Priority = 'critical' | 'high' | 'medium' | 'low';
 export type TaskStatus = 'todo' | 'in-progress' | 'done' | 'delegated';
 export type MeetingStatus = 'upcoming' | 'in-progress' | 'done';
 
-// ── Projects ────────────────────────────────────────────────
+// ── Projets ─────────────────────────────────────────────────
 export const projects = [
-  { id: 'p1', name: 'Platform Relaunch', color: '#6366f1', status: 'at-risk' },
-  { id: 'p2', name: 'Q2 Hiring Wave', color: '#0ea5e9', status: 'on-track' },
-  { id: 'p3', name: 'Enterprise Migration', color: '#f59e0b', status: 'at-risk' },
-  { id: 'p4', name: 'Customer Success', color: '#10b981', status: 'on-track' },
-  { id: 'p5', name: 'Data Infrastructure', color: '#8b5cf6', status: 'delayed' },
+  { id: 'p1', name: 'Refonte Platform', color: '#6366f1', status: 'at-risk' },
+  { id: 'p2', name: 'Recrutements Q2', color: '#0ea5e9', status: 'on-track' },
+  { id: 'p3', name: 'Migration Enterprise', color: '#f59e0b', status: 'at-risk' },
+  { id: 'p4', name: 'Succès Client', color: '#10b981', status: 'on-track' },
+  { id: 'p5', name: 'Infrastructure Data', color: '#8b5cf6', status: 'delayed' },
 ];
 
-// ── Team Members ────────────────────────────────────────────
+// ── Membres de l'équipe ──────────────────────────────────────
 export const teamMembers = [
   {
     id: 'm1',
     name: 'Sophie Laurent',
-    role: 'Engineering Lead',
+    role: 'Lead Engineering',
     avatar: 'SL',
     avatarColor: '#6366f1',
     load: 95,
@@ -36,7 +36,7 @@ export const teamMembers = [
     avatar: 'MC',
     avatarColor: '#0ea5e9',
     load: 70,
-    skills: ['Strategy', 'Roadmap', 'Analytics'],
+    skills: ['Stratégie', 'Roadmap', 'Analytics'],
     projects: ['p1', 'p3'],
     availability: 'available',
     status: 'online',
@@ -48,7 +48,7 @@ export const teamMembers = [
     avatar: 'AO',
     avatarColor: '#10b981',
     load: 60,
-    skills: ['Figma', 'UX Research', 'Design Systems'],
+    skills: ['Figma', 'UX Research', 'Design System'],
     projects: ['p1', 'p4'],
     availability: 'available',
     status: 'away',
@@ -72,7 +72,7 @@ export const teamMembers = [
     avatar: 'EV',
     avatarColor: '#ec4899',
     load: 75,
-    skills: ['Enterprise Sales', 'CRM', 'Negotiation'],
+    skills: ['Ventes Enterprise', 'CRM', 'Négociation'],
     projects: ['p3', 'p4'],
     availability: 'available',
     status: 'offline',
@@ -91,132 +91,132 @@ export const teamMembers = [
   },
 ];
 
-// ── Urgent Items ─────────────────────────────────────────────
+// ── Éléments urgents ─────────────────────────────────────────
 export const urgentItems = [
   {
     id: 'u1',
-    title: 'Acme Corp migration blocked — DB schema conflict',
+    title: 'Migration Acme bloquée — conflit de schéma DB',
     project: 'p3',
     priority: 'critical' as Priority,
-    suggestedAction: 'Schedule war-room with Sophie and Thomas today',
+    suggestedAction: 'Organiser une war-room avec Sophie et Thomas aujourd\'hui',
     assignedTo: null,
-    dueDate: 'Today 3pm',
+    dueDate: 'Aujourd\'hui 15h',
     type: 'issue',
   },
   {
     id: 'u2',
-    title: 'Q2 budget approval deadline tomorrow',
+    title: 'Validation budget Q2 — deadline demain matin',
     project: 'p2',
     priority: 'critical' as Priority,
-    suggestedAction: 'Review & sign off budget doc in Notion',
+    suggestedAction: 'Réviser et signer le document budget dans Notion',
     assignedTo: null,
-    dueDate: 'Tomorrow 9am',
+    dueDate: 'Demain 9h',
     type: 'decision',
   },
   {
     id: 'u3',
-    title: 'Platform load test failing at 5k users',
+    title: 'Test de charge Platform : échec à 5 000 utilisateurs',
     project: 'p1',
     priority: 'high' as Priority,
-    suggestedAction: 'Assign to Sophie — needs infra review',
+    suggestedAction: 'Assigner à Sophie — révision infra nécessaire',
     assignedTo: 'm1',
-    dueDate: 'Today EOD',
+    dueDate: 'Aujourd\'hui EOD',
     type: 'issue',
   },
   {
     id: 'u4',
-    title: 'Client NPS dropped 12 points this month',
+    title: 'NPS client en baisse de 12 points ce mois-ci',
     project: 'p4',
     priority: 'high' as Priority,
-    suggestedAction: 'Review support tickets and escalate top 3',
+    suggestedAction: 'Revoir les tickets support et remonter les 3 critiques',
     assignedTo: null,
-    dueDate: 'This week',
+    dueDate: 'Cette semaine',
     type: 'alert',
   },
 ];
 
-// ── AI Recommendations ──────────────────────────────────────
+// ── Recommandations IA ───────────────────────────────────────
 export const aiRecommendations = [
   {
     id: 'r1',
     type: 'staffing',
-    title: 'Reassign Julien to Platform Relaunch',
-    rationale: 'Julien has 50% capacity and p1 frontend is behind schedule by 8 days.',
+    title: 'Réaffecter Julien à la Refonte Platform',
+    rationale: 'Julien a 50% de capacité libre et le frontend p1 accuse 8 jours de retard.',
     confidence: 92,
-    action: 'Reassign',
+    action: 'Réaffecter',
     impact: 'high',
   },
   {
     id: 'r2',
     type: 'priority',
-    title: 'Delay Data Infrastructure to Q3',
-    rationale: 'Thomas is overloaded and p5 has no hard deadline. Shifting frees 30% of his capacity.',
+    title: 'Reporter Infrastructure Data au T3',
+    rationale: 'Thomas est surchargé et p5 n\'a pas d\'échéance fixe. Décaler libère 30% de sa capacité.',
     confidence: 78,
-    action: 'Defer project',
+    action: 'Reporter le projet',
     impact: 'medium',
   },
   {
     id: 'r3',
     type: 'risk',
-    title: 'Enterprise Migration may slip Q2 deadline',
-    rationale: 'Current velocity is 60% of target. Acme blocker adds 3 days minimum.',
+    title: 'Migration Enterprise risque de glisser au-delà du T2',
+    rationale: 'Vélocité actuelle à 60% de la cible. Le blocage Acme ajoute 3 jours minimum.',
     confidence: 85,
-    action: 'Review plan',
+    action: 'Revoir le plan',
     impact: 'high',
   },
   {
     id: 'r4',
     type: 'staffing',
-    title: 'Open 2 Backend Engineer positions',
-    rationale: 'Sophie is at 95% load for 3 consecutive weeks. Team velocity declining.',
+    title: 'Ouvrir 2 postes Backend Engineer',
+    rationale: 'Sophie est à 95% de charge depuis 3 semaines. La vélocité de l\'équipe diminue.',
     confidence: 88,
-    action: 'Start hiring',
+    action: 'Lancer le recrutement',
     impact: 'high',
   },
 ];
 
-// ── Weak Signals ─────────────────────────────────────────────
+// ── Signaux faibles ───────────────────────────────────────────
 export const weakSignals = [
   {
     id: 'ws1',
     type: 'burnout-risk',
-    message: 'Sophie has worked 50h+ for 3 weeks in a row',
+    message: 'Sophie fait 50h+ par semaine depuis 3 semaines d\'affilée',
     severity: 'high',
     member: 'm1',
-    hint: 'Consider redistributing load or offering a day off',
+    hint: 'Envisager de redistribuer la charge ou proposer un jour de congé',
   },
   {
     id: 'ws2',
     type: 'client-frustration',
-    message: 'Acme Corp mentioned "disappointing" twice in last 3 emails',
+    message: 'Acme Corp a écrit "décevant" 2× dans les 3 derniers emails',
     severity: 'medium',
-    hint: 'Proactive check-in call recommended',
+    hint: 'Appel proactif de check-in recommandé',
   },
   {
     id: 'ws3',
     type: 'project-drift',
-    message: 'Platform Relaunch has missed 2 milestones without update',
+    message: 'Refonte Platform a raté 2 jalons sans mise à jour',
     severity: 'medium',
     project: 'p1',
-    hint: 'Request status update from Marcus',
+    hint: 'Demander un point de situation à Marcus',
   },
   {
     id: 'ws4',
     type: 'overload',
-    message: '3 team members above 80% load simultaneously',
+    message: '3 membres de l\'équipe simultanément au-dessus de 80% de charge',
     severity: 'high',
-    hint: 'Review Q2 priorities and consider pushing non-critical items',
+    hint: 'Revoir les priorités Q2, reporter les éléments non critiques',
   },
 ];
 
-// ── Tasks ────────────────────────────────────────────────────
+// ── Tâches ────────────────────────────────────────────────────
 export const tasks = [
   {
     id: 't1',
-    title: 'Review Q2 OKRs and update scores',
+    title: 'Revoir les OKRs Q2 et mettre à jour les scores',
     priority: 'critical' as Priority,
     status: 'todo' as TaskStatus,
-    deadline: 'Today',
+    deadline: 'Aujourd\'hui',
     project: 'p2',
     assignedTo: 'me',
     section: 'today',
@@ -225,10 +225,10 @@ export const tasks = [
   },
   {
     id: 't2',
-    title: 'Sign off Platform Relaunch go/no-go',
+    title: 'Valider le go/no-go Refonte Platform',
     priority: 'critical' as Priority,
     status: 'todo' as TaskStatus,
-    deadline: 'Today 5pm',
+    deadline: 'Aujourd\'hui 17h',
     project: 'p1',
     assignedTo: 'me',
     section: 'today',
@@ -237,10 +237,10 @@ export const tasks = [
   },
   {
     id: 't3',
-    title: 'Call with Acme Corp — migration status',
+    title: 'Appel Acme Corp — état de la migration',
     priority: 'high' as Priority,
     status: 'todo' as TaskStatus,
-    deadline: 'Today',
+    deadline: 'Aujourd\'hui',
     project: 'p3',
     assignedTo: 'me',
     section: 'today',
@@ -249,10 +249,10 @@ export const tasks = [
   },
   {
     id: 't4',
-    title: 'Prepare board presentation slides',
+    title: 'Préparer les slides de présentation board',
     priority: 'high' as Priority,
     status: 'in-progress' as TaskStatus,
-    deadline: 'Tomorrow',
+    deadline: 'Demain',
     project: 'p1',
     assignedTo: 'me',
     section: 'today',
@@ -261,10 +261,10 @@ export const tasks = [
   },
   {
     id: 't5',
-    title: 'Interview candidate for Senior Backend role',
+    title: 'Entretien candidat — poste Senior Backend',
     priority: 'medium' as Priority,
     status: 'todo' as TaskStatus,
-    deadline: 'Wed Mar 25',
+    deadline: 'Mer 25 Mars',
     project: 'p2',
     assignedTo: 'me',
     section: 'upcoming',
@@ -273,10 +273,10 @@ export const tasks = [
   },
   {
     id: 't6',
-    title: 'Draft Q3 roadmap proposal',
+    title: 'Rédiger la proposition de roadmap Q3',
     priority: 'medium' as Priority,
     status: 'todo' as TaskStatus,
-    deadline: 'Fri Mar 27',
+    deadline: 'Ven 27 Mars',
     project: 'p1',
     assignedTo: 'me',
     section: 'upcoming',
@@ -285,10 +285,10 @@ export const tasks = [
   },
   {
     id: 't7',
-    title: 'Review and merge data pipeline PRs',
+    title: 'Revoir et merger les PRs data pipeline',
     priority: 'low' as Priority,
     status: 'delegated' as TaskStatus,
-    deadline: 'Thu Mar 26',
+    deadline: 'Jeu 26 Mars',
     project: 'p5',
     assignedTo: 'm4',
     section: 'delegated',
@@ -297,10 +297,10 @@ export const tasks = [
   },
   {
     id: 't8',
-    title: 'Update customer onboarding docs',
+    title: 'Mettre à jour la documentation onboarding client',
     priority: 'low' as Priority,
     status: 'delegated' as TaskStatus,
-    deadline: 'Next week',
+    deadline: 'Semaine prochaine',
     project: 'p4',
     assignedTo: 'm3',
     section: 'delegated',
@@ -309,10 +309,10 @@ export const tasks = [
   },
   {
     id: 't9',
-    title: 'Audit cloud costs for April',
+    title: 'Audit des coûts cloud pour avril',
     priority: 'medium' as Priority,
     status: 'todo' as TaskStatus,
-    deadline: 'Apr 1',
+    deadline: '1 Avr',
     project: 'p5',
     assignedTo: 'me',
     section: 'upcoming',
@@ -321,7 +321,7 @@ export const tasks = [
   },
 ];
 
-// ── Meetings ─────────────────────────────────────────────────
+// ── Réunions ─────────────────────────────────────────────────
 export const meetings = [
   {
     id: 'meet1',
@@ -332,13 +332,13 @@ export const meetings = [
     project: 'p1',
     day: 'today',
     status: 'done' as MeetingStatus,
-    summary: 'Sophie flagged infra blocker. Marcus confirmed go-live date at risk.',
+    summary: 'Sophie a signalé un blocage infra. Marcus a confirmé la date de mise en prod à risque.',
     prepPoints: [],
     color: '#6366f1',
   },
   {
     id: 'meet2',
-    title: 'Platform Relaunch — War Room',
+    title: 'Refonte Platform — War Room',
     start: '10:30',
     end: '11:30',
     participants: ['m1', 'm2', 'm6'],
@@ -347,16 +347,16 @@ export const meetings = [
     status: 'upcoming' as MeetingStatus,
     summary: null,
     prepPoints: [
-      'Review load test results from last night',
-      'Confirm go/no-go criteria with team',
-      'Prepare fallback plan if tests fail again',
+      'Revoir les résultats du test de charge de la nuit',
+      'Confirmer les critères go/no-go avec l\'équipe',
+      'Préparer le plan B si les tests échouent encore',
     ],
     color: '#f59e0b',
     conflict: false,
   },
   {
     id: 'meet3',
-    title: '1:1 with Sophie Laurent',
+    title: '1:1 avec Sophie Laurent',
     start: '14:00',
     end: '14:30',
     participants: ['m1'],
@@ -365,16 +365,16 @@ export const meetings = [
     status: 'upcoming' as MeetingStatus,
     summary: null,
     prepPoints: [
-      'Address workload concerns — she\'s at 95%',
-      'Discuss potential hire timeline',
-      'Check team morale',
+      'Aborder la surcharge — elle est à 95%',
+      'Discuter du calendrier de recrutement',
+      'Prendre la température de l\'équipe',
     ],
     color: '#6366f1',
     conflict: false,
   },
   {
     id: 'meet4',
-    title: 'Acme Corp — Migration Review',
+    title: 'Acme Corp — Revue Migration',
     start: '15:00',
     end: '16:00',
     participants: ['m4', 'm5'],
@@ -383,16 +383,16 @@ export const meetings = [
     status: 'upcoming' as MeetingStatus,
     summary: null,
     prepPoints: [
-      'Summarize DB schema conflict and propose fix',
-      'Give revised timeline (+3 days minimum)',
-      'Have Elena present account context',
+      'Résumer le conflit de schéma DB et proposer un fix',
+      'Donner un calendrier révisé (+3 jours minimum)',
+      'Elena présente le contexte client',
     ],
     color: '#ec4899',
     conflict: false,
   },
   {
     id: 'meet5',
-    title: 'Q2 Budget Review',
+    title: 'Revue Budget Q2',
     start: '09:30',
     end: '10:30',
     participants: ['m2', 'm5'],
@@ -400,7 +400,7 @@ export const meetings = [
     day: 'tomorrow',
     status: 'upcoming' as MeetingStatus,
     summary: null,
-    prepPoints: ['Bring signed budget doc', 'Prepare headcount justification'],
+    prepPoints: ['Apporter le document budget signé', 'Justification des effectifs'],
     color: '#0ea5e9',
     conflict: false,
   },
@@ -420,7 +420,7 @@ export const meetings = [
   },
   {
     id: 'meet7',
-    title: 'Investor Update Call',
+    title: 'Appel Investisseurs',
     start: '15:30',
     end: '16:30',
     participants: ['m2'],
@@ -428,13 +428,13 @@ export const meetings = [
     day: 'tomorrow',
     status: 'upcoming' as MeetingStatus,
     summary: null,
-    prepPoints: ['Prepare Q2 metrics slide', 'Highlight Platform Relaunch milestone'],
+    prepPoints: ['Préparer la slide métriques Q2', 'Mettre en avant le jalon Refonte Platform'],
     color: '#8b5cf6',
     conflict: false,
   },
 ];
 
-// ── Emails ───────────────────────────────────────────────────
+// ── Emails ────────────────────────────────────────────────────
 export const emails = [
   {
     id: 'e1',
@@ -442,41 +442,41 @@ export const emails = [
     senderEmail: 'david.park@acmecorp.com',
     senderAvatar: 'DP',
     senderColor: '#f59e0b',
-    subject: 'RE: Migration Timeline — Critical Update Needed',
-    summary: 'David is frustrated with the repeated delays and is asking for a definitive go-live date by EOD Friday.',
-    body: `Hi,
+    subject: 'RE: Planning Migration — Mise à jour critique requise',
+    summary: 'David est frustré des retards répétés et demande une date de mise en prod définitive avant vendredi EOD.',
+    body: `Bonjour,
 
-I wanted to follow up on our call last week. We're getting to a point where the delays are impacting our own internal timelines significantly.
+Je fais suite à notre appel de la semaine dernière. Nous sommes à un point où les retards impactent significativement nos propres plannings internes.
 
-Our team has been waiting for this migration for 6 weeks now. Each time we get a new date, it slips again. I need a definitive go-live date by EOD Friday, otherwise we'll have to escalate internally and reconsider our contract terms.
+Notre équipe attend cette migration depuis 6 semaines maintenant. À chaque fois qu'on nous donne une nouvelle date, elle glisse encore. J'ai besoin d'une date de mise en prod définitive avant vendredi EOD, sinon nous devrons escalader en interne et reconsidérer les termes de notre contrat.
 
-I know your team is working hard, but our CTO is asking for answers I can't give without firm commitments from you.
+Je sais que votre équipe travaille dur, mais notre CTO me demande des réponses que je ne peux pas donner sans engagements fermes de votre part.
 
-Please advise.
+Merci de me revenir.
 
 David Park
-Director of Technology, Acme Corp`,
-    receivedAt: '9:42 AM',
+Directeur Technique, Acme Corp`,
+    receivedAt: '9h42',
     isRead: false,
     priority: 'critical' as Priority,
     project: 'p3',
-    aiSuggestedReply: `Hi David,
+    aiSuggestedReply: `Bonjour David,
 
-Thank you for your candid message — I completely understand your frustration and I take full responsibility for the delays.
+Merci pour votre message direct — je comprends parfaitement votre frustration et j'en prends l'entière responsabilité.
 
-I've just come out of an internal war-room this morning specifically to address this. Here's where we stand:
+Je sors justement d'une war-room interne ce matin spécifiquement pour adresser ce sujet. Voici où nous en sommes :
 
-- The DB schema conflict has been identified and our team is on it today
-- We will have a confirmed go-live date by **Wednesday noon** at the latest
-- I'm committing to daily updates until we're live
+- Le conflit de schéma DB a été identifié et notre équipe est dessus aujourd'hui
+- Nous aurons une date de mise en prod confirmée **mercredi midi** au plus tard
+- Je m'engage à des mises à jour quotidiennes jusqu'à la mise en prod
 
-I'd also like to schedule a brief call tomorrow to walk you through the revised plan directly. Would 10am or 3pm work?
+Je souhaite également planifier un bref appel demain pour vous présenter le plan révisé directement. 10h ou 15h vous conviendrait ?
 
-Apologies again for the friction. We're fully committed to getting this right.
+Toutes mes excuses pour les frictions. Nous sommes pleinement engagés à bien faire les choses.
 
-Best,
-[Your name]`,
-    suggestedActions: ['Reply', 'Schedule call', 'Escalate internally'],
+Cordialement,
+[Votre nom]`,
+    suggestedActions: ['Répondre', 'Planifier un appel', 'Escalader en interne'],
   },
   {
     id: 'e2',
@@ -484,31 +484,31 @@ Best,
     senderEmail: 'marie.fontaine@board.com',
     senderAvatar: 'MF',
     senderColor: '#8b5cf6',
-    subject: 'Board Deck — Missing Q2 Projections',
-    summary: 'Marie is asking for the Q2 financial projections to be added to the board deck before Thursday.',
-    body: `Hi,
+    subject: 'Deck Board — Projections Q2 manquantes',
+    summary: 'Marie demande l\'ajout des projections financières Q2 au deck avant jeudi.',
+    body: `Bonjour,
 
-Quick note before Thursday's board meeting — I noticed the Q2 financial projections are still missing from the deck.
+Un rapide message avant la réunion du board jeudi — j'ai remarqué que les projections financières Q2 sont toujours manquantes dans le deck.
 
-Could you make sure those are added before EOD Wednesday? The board members will need time to review.
+Pourriez-vous vous assurer qu'elles soient ajoutées avant mercredi EOD ? Les membres du board auront besoin de temps pour les analyser.
 
-Also, please ensure the headcount section is updated to reflect the new hires in March.
+Merci aussi de mettre à jour la section effectifs pour refléter les nouveaux recrutements de mars.
 
-Thanks,
+Merci,
 Marie`,
-    receivedAt: 'Yesterday, 4:15 PM',
+    receivedAt: 'Hier, 16h15',
     isRead: false,
     priority: 'high' as Priority,
     project: null,
-    aiSuggestedReply: `Hi Marie,
+    aiSuggestedReply: `Bonjour Marie,
 
-Thanks for the heads-up. I'll have the Q2 projections and updated headcount section added to the deck by Wednesday noon — well ahead of the board meeting.
+Merci pour le rappel. J'aurai les projections Q2 et la section effectifs mise à jour dans le deck avant mercredi midi — bien avant la réunion du board.
 
-I'll send you a preview link once it's updated.
+Je vous enverrai un lien de prévisualisation dès que c'est fait.
 
-Best,
-[Your name]`,
-    suggestedActions: ['Reply', 'Delegate to Marcus', 'Add to tasks'],
+Cordialement,
+[Votre nom]`,
+    suggestedActions: ['Répondre', 'Déléguer à Marcus', 'Ajouter aux tâches'],
   },
   {
     id: 'e3',
@@ -516,31 +516,31 @@ Best,
     senderEmail: 'alex.torres@techstartup.io',
     senderAvatar: 'AT',
     senderColor: '#10b981',
-    subject: 'Partnership Opportunity — AI Integration',
-    summary: 'Alex is proposing a technical partnership for AI feature integration. Seems promising but not urgent.',
-    body: `Hi,
+    subject: 'Opportunité Partenariat — Intégration IA',
+    summary: 'Alex propose un partenariat technique pour l\'intégration de fonctionnalités IA. Prometteur mais non urgent.',
+    body: `Bonjour,
 
-I came across your platform and I think there could be a strong mutual benefit in exploring a technical integration between our AI layer and your existing workflow.
+J'ai découvert votre plateforme et je pense qu'il pourrait y avoir une vraie synergie à explorer entre notre couche IA et votre workflow existant.
 
-We've done similar integrations with 3 other SaaS companies in your space and the results have been impressive — avg 23% user engagement increase.
+Nous avons réalisé des intégrations similaires avec 3 autres SaaS de votre secteur et les résultats sont impressionnants — +23% d'engagement utilisateur en moyenne.
 
-Would you be open to a 20-minute call this week or next?
+Seriez-vous ouvert à un appel de 20 minutes cette semaine ou la suivante ?
 
 Alex Torres
 CEO, TechStartup.io`,
-    receivedAt: 'Yesterday, 11:30 AM',
+    receivedAt: 'Hier, 11h30',
     isRead: true,
     priority: 'medium' as Priority,
     project: null,
-    aiSuggestedReply: `Hi Alex,
+    aiSuggestedReply: `Bonjour Alex,
 
-Thanks for reaching out — the integration sounds interesting. I'm currently heads-down on a major product launch, but I'd be happy to connect in 2-3 weeks.
+Merci pour votre message — l'intégration semble intéressante. Je suis actuellement concentré sur un lancement produit majeur, mais je serais ravi d'échanger dans 2-3 semaines.
 
-Could you send over a brief overview of the integration specs in the meantime? That'll help me loop in the right people.
+Pourriez-vous m'envoyer une présentation succincte des specs d'intégration en attendant ? Cela m'aidera à impliquer les bonnes personnes.
 
-Best,
-[Your name]`,
-    suggestedActions: ['Reply', 'Schedule for later', 'Ignore'],
+Cordialement,
+[Votre nom]`,
+    suggestedActions: ['Répondre', 'Planifier pour plus tard', 'Ignorer'],
   },
   {
     id: 'e4',
@@ -548,31 +548,31 @@ Best,
     senderEmail: 'lena.braun@investor.vc',
     senderAvatar: 'LB',
     senderColor: '#6366f1',
-    subject: 'Q1 MRR Numbers — Request Before Friday',
-    summary: 'Lena is requesting final Q1 MRR figures for the investor report. Needs by Friday.',
-    body: `Hi,
+    subject: 'Chiffres MRR Q1 — Demande avant vendredi',
+    summary: 'Lena demande les chiffres MRR Q1 définitifs pour le rapport investisseurs. À envoyer avant vendredi.',
+    body: `Bonjour,
 
-As we're wrapping up the Q1 investor report, we need the final MRR numbers confirmed by Friday EOD.
+Pour la finalisation du rapport investisseurs Q1, nous avons besoin des chiffres MRR définitifs confirmés avant vendredi EOD.
 
-Please also include any notable churn events or expansion revenue from the quarter.
+Merci d'inclure également les événements de churn notables et les revenus d'expansion du trimestre.
 
-Looking forward to strong numbers!
+Dans l'attente de bons chiffres !
 
 Lena Braun
 Partner, Venture Capital`,
-    receivedAt: 'Mar 22, 3:00 PM',
+    receivedAt: '22 Mar, 15h00',
     isRead: true,
     priority: 'high' as Priority,
     project: null,
-    aiSuggestedReply: `Hi Lena,
+    aiSuggestedReply: `Bonjour Lena,
 
-I'll have the confirmed Q1 MRR figures to you by Friday noon, including the churn and expansion breakdown.
+Je vous transmettrai les chiffres MRR Q1 confirmés vendredi midi, avec le détail churn et expansion.
 
-Quick preview: it's been a solid quarter — will share the full picture Friday.
+Aperçu rapide : c'est un bon trimestre — je vous enverrai le tableau complet vendredi.
 
-Best,
-[Your name]`,
-    suggestedActions: ['Reply', 'Delegate to Finance', 'Add to tasks'],
+Cordialement,
+[Votre nom]`,
+    suggestedActions: ['Répondre', 'Déléguer à Finance', 'Ajouter aux tâches'],
   },
   {
     id: 'e5',
@@ -580,38 +580,38 @@ Best,
     senderEmail: 'thomas.mercier@company.com',
     senderAvatar: 'TM',
     senderColor: '#f59e0b',
-    subject: 'Data Pipeline — Incident Report',
-    summary: 'Thomas is flagging a data pipeline failure from last night. Impact was limited but needs sign-off.',
-    body: `Hi,
+    subject: 'Pipeline Data — Rapport d\'incident',
+    summary: 'Thomas signale une panne du pipeline data cette nuit. Impact limité mais nécessite validation.',
+    body: `Bonjour,
 
-Just flagging last night's data pipeline incident. We had a 2-hour window (11pm–1am) where the ETL job failed silently, causing ~3% of events to be dropped.
+Je signale l'incident data de la nuit dernière. Nous avons eu une fenêtre de 2h (23h–1h) où le job ETL a échoué silencieusement, causant la perte de ~3% des événements.
 
-Root cause: a schema change in the upstream source that wasn't communicated. We've added a validation step to prevent recurrence.
+Cause racine : un changement de schéma en amont non communiqué. Nous avons ajouté une étape de validation pour éviter la récurrence.
 
-No customer impact. I'll post the full incident report in Notion by end of day.
+Aucun impact client. Je posterai le rapport d'incident complet dans Notion en fin de journée.
 
-Let me know if you need anything else.
+Fais-moi signe si tu as besoin d'autre chose.
 
 Thomas`,
-    receivedAt: 'Today, 8:15 AM',
+    receivedAt: 'Aujourd\'hui, 8h15',
     isRead: false,
     priority: 'medium' as Priority,
     project: 'p5',
-    aiSuggestedReply: `Hi Thomas,
+    aiSuggestedReply: `Bonjour Thomas,
 
-Thanks for the quick flag and the clear RCA. Glad impact was contained.
+Merci pour le signalement rapide et l'analyse claire. Content que l'impact soit limité.
 
-The validation step sounds like the right fix — good thinking. Please make sure the incident report in Notion includes a timeline and the schema change process improvement.
+L'étape de validation est la bonne approche. Assure-toi que le rapport Notion inclut une timeline et l'amélioration du process de communication des changements de schéma.
 
-I'll mention it briefly in today's standup.
+J'en ferai mention brièvement au standup de demain.
 
-Thanks,
-[Your name]`,
-    suggestedActions: ['Reply', 'Acknowledge', 'Create post-mortem task'],
+Merci,
+[Votre nom]`,
+    suggestedActions: ['Répondre', 'Accuser réception', 'Créer une tâche post-mortem'],
   },
 ];
 
-// ── Helper: Get project by id ──────────────────────────────
+// ── Helpers ────────────────────────────────────────────────
 export function getProject(id: string | null) {
   return projects.find((p) => p.id === id) ?? null;
 }

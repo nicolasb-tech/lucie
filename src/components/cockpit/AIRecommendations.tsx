@@ -7,8 +7,14 @@ import { Badge } from '@/components/ui/Badge';
 
 const typeConfig: Record<string, { icon: string; label: string; color: string }> = {
   staffing: { icon: '👥', label: 'Staffing', color: 'bg-blue-50 text-blue-700' },
-  priority: { icon: '⚡', label: 'Priority', color: 'bg-purple-50 text-purple-700' },
-  risk: { icon: '⚠️', label: 'Risk', color: 'bg-amber-50 text-amber-700' },
+  priority: { icon: '⚡', label: 'Priorité', color: 'bg-purple-50 text-purple-700' },
+  risk: { icon: '⚠️', label: 'Risque', color: 'bg-amber-50 text-amber-700' },
+};
+
+const impactLabel: Record<string, string> = {
+  high: 'impact élevé',
+  medium: 'impact moyen',
+  low: 'impact faible',
 };
 
 function ConfidenceBar({ value }: { value: number }) {
@@ -32,13 +38,13 @@ export function AIRecommendations() {
   return (
     <section>
       <div className="flex items-center gap-2 mb-3">
-        <h2 className="text-sm font-semibold text-gray-900">🧠 AI Recommendations</h2>
-        <span className="text-xs text-gray-400">Generated just now</span>
+        <h2 className="text-sm font-semibold text-gray-900">🧠 L&apos;IA recommande</h2>
+        <span className="text-xs text-gray-400">À l&apos;instant</span>
       </div>
 
       {visible.length === 0 ? (
         <Card className="text-center py-6">
-          <p className="text-sm text-gray-400">No pending recommendations.</p>
+          <p className="text-sm text-gray-400">Aucune recommandation en attente.</p>
         </Card>
       ) : (
         <div className="space-y-2">
@@ -52,13 +58,13 @@ export function AIRecommendations() {
                     <div className="flex items-start justify-between gap-2">
                       <p className="text-sm font-semibold text-gray-900">{rec.title}</p>
                       <Badge variant={rec.impact === 'high' ? 'high' : 'medium'}>
-                        {rec.impact} impact
+                        {impactLabel[rec.impact] ?? rec.impact}
                       </Badge>
                     </div>
                     <p className="text-xs text-gray-500 mt-1 leading-relaxed">{rec.rationale}</p>
                     <div className="mt-2">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="text-xs text-gray-400">AI confidence</span>
+                        <span className="text-xs text-gray-400">Confiance IA</span>
                       </div>
                       <ConfidenceBar value={rec.confidence} />
                     </div>
@@ -66,7 +72,7 @@ export function AIRecommendations() {
                 </div>
                 <div className="flex items-center justify-end gap-1.5 mt-3 pt-3 border-t border-gray-50">
                   <Button size="xs" variant="ghost" onClick={() => setDismissed((s) => new Set([...s, rec.id]))}>
-                    Dismiss
+                    Ignorer
                   </Button>
                   <Button size="xs" variant="primary" onClick={() => setApplied((s) => new Set([...s, rec.id]))}>
                     {rec.action} →
